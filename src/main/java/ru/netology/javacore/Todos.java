@@ -4,12 +4,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Todos {
-    List<String> taskList;
+    List<String> taskList = new ArrayList<>();;
     StringBuilder bd = new StringBuilder();
 
-    public Todos() {
-        taskList = new ArrayList<>();
-    }
 
     public void addTask(String task) {
         taskList.add(task);
@@ -21,7 +18,6 @@ public class Todos {
         } else {
             System.out.println("Задача отсутствует");
         }
-
     }
 
     public String getAllTasks() {
@@ -30,7 +26,7 @@ public class Todos {
         for (String c : taskList) {
             bd.append(c + " ");
         }
-        return bd.toString().trim();
+        return bd.toString();
     }
 
 }
