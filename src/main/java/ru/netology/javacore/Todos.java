@@ -4,7 +4,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Todos {
-    List<String> taskList = new ArrayList<>();;
+    List<String> taskList = new ArrayList<>();
+    ;
     StringBuilder bd = new StringBuilder();
 
 
@@ -16,7 +17,7 @@ public class Todos {
         if (taskList.contains(task)) {
             taskList.remove(task);
         } else {
-            System.out.println("Задача отсутствует");
+            throw new IllegalArgumentException("Задача отсутствует");
         }
     }
 
@@ -26,7 +27,7 @@ public class Todos {
         for (String c : taskList) {
             bd.append(c + " ");
         }
-        return bd.toString();
+        return bd.toString().trim();
     }
 
 }
