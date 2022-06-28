@@ -35,21 +35,21 @@ public class TodoServer {
                     String typeTodos = (String) jsonObj.get("type");
                     String addTodos = (String) jsonObj.get("task");
 
-                        if (typeTodos.equals("ADD")) {
-                            todos.addTask(addTodos);
-                        }
-                        if(typeTodos.equals("REMOVE")) {
-
-                            todos.removeTask(addTodos);
-                        }
-                        printWriter.println(todos.getAllTasks());
+                    if (typeTodos.equals("ADD")) {
+                        todos.addTask(addTodos);
                     }
+                    if (typeTodos.equals("REMOVE")) {
+
+                        todos.removeTask(addTodos);
+                    }
+                    printWriter.println(todos.getAllTasks());
                 }
-
-            } catch(ParseException e){
-                e.printStackTrace();
             }
-        }
 
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
+
+}
 
