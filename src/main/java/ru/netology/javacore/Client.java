@@ -19,12 +19,9 @@ public class Client {
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         ) {
-           // out.println("{ \"type\": \"ADD\", \"task\": \"task #" + pickRandomChar() + "\" }");
-            out.println("{ \"type\": \"ADD\", \"task\": \"first\" }");
-            out.println("{ \"type\": \"ADD\", \"task\": \"second\" }");
-            out.println("{ \"type\": \"ADD\", \"task\": \"third\" }");
-            out.println("{ \"type\": \"REMOVE\", \"task\": \"second\" }");
-            out.println("{ \"type\": \"REMOVE\", \"task\": \"third\" }");
+           out.println("{ \"type\": \"ADD\", \"task\": \"task #" + pickRandomChar() + "\" }");
+            //out.println("{ \"type\": \"REMOVE\", \"task\": \"first\" }");
+
             System.out.println(in.readLine());
         }
     }

@@ -4,30 +4,25 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Todos {
-    private List<String> taskList = new ArrayList<>();
+    List<String> tasks;
 
-    private StringBuilder bd = new StringBuilder();
-
+    public Todos() {
+        this.tasks = new ArrayList<String>();
+    }
 
     public void addTask(String task) {
-        taskList.add(task);
+        tasks.add(task);
     }
 
     public void removeTask(String task) {
-        if (taskList.contains(task)) {
-            taskList.remove(task);
-        } else {
-            throw new IllegalArgumentException("Задача отсутствует");
-        }
+        tasks.remove(task);
     }
 
     public String getAllTasks() {
-        Collections.sort(taskList);
-
-        for (String c : taskList) {
-            bd.append(c + " ");
-        }
-        return bd.toString().trim();
+        Collections.sort(tasks);
+        String helper = "";
+        for (String s : tasks) helper += s + " ";
+        return helper;
     }
 
 }

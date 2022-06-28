@@ -21,38 +21,35 @@ public class TodoServer {
     }
 
     public void start() throws IOException {
-        try (ServerSocket serverSocket = new ServerSocket(port);
-             Socket socket = serverSocket.accept();
-             PrintWriter printWriter = new PrintWriter(socket.getOutputStream(), true);
-             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-            System.out.println("Starting server at " + port + "...");
-
-            JSONParser jsonParser = new JSONParser();
+        System.out.println("Starting server at " + port + "...");
+        try (ServerSocket serverSocket = new ServerSocket(port);) {
             while (true) {
-                if (!bufferedReader.ready()) {
-                    break;
-                }
-                String json = bufferedReader.readLine();
-                Object obj = jsonParser.parse(json);
-                JSONObject jsonObj = (JSONObject) obj;
-                for (int i = 0; i < jsonObj.size(); ) {
+                try (
+                        Socket socket = serverSocket.accept();
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                        PrintWriter printWriter = new PrintWriter(socket.getOutputStream());
+                ) {
+                    String json = bufferedReader.readLine();
+                    Object obj = new JSONParser().parse(json);
+                    JSONObject jsonObj = (JSONObject) obj;
                     String typeTodos = (String) jsonObj.get("type");
-                    if (typeTodos.equals("ADD")) {
-                        String addTodos = (String) jsonObj.get("task");
-                        todos.addTask(addTodos);
-                    } else {
-                        String deleteTodos = (String) jsonObj.get("task");
-                        todos.removeTask(deleteTodos);
-                    }
-                    i = i + 2;
-                }
-            }
-            String s = todos.getAllTasks();
-            printWriter.println(s);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
+                    String addTodos = (String) jsonObj.get("task");
 
-}
+                        if (typeTodos.equals("ADD")) {
+                            todos.addTask(addTodos);
+                        }
+                        if(typeTodos.equals("REMOVE")) {
+
+                            todos.removeTask(addTodos);
+                        }
+                        printWriter.println(todos.getAllTasks());
+                    }
+                }
+
+            } catch(ParseException e){
+                e.printStackTrace();
+            }
+        }
+
+    }
 
