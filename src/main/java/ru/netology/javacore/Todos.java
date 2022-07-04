@@ -4,10 +4,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Todos {
-    List<String> tasks;
+    protected List<String> tasks;
 
     public Todos() {
-        this.tasks = new ArrayList<String>();
+        this.tasks = new ArrayList<>();
     }
 
     public void addTask(String task) {
@@ -20,9 +20,12 @@ public class Todos {
 
     public String getAllTasks() {
         Collections.sort(tasks);
-        String bd = "";
-        for (String s : tasks) bd += s + " ";
-        return bd;
+        StringBuilder sb = new StringBuilder();
+        for (String s : tasks) {
+            sb.append(s);
+            sb.append(" ");
+        }
+        return sb.toString();
     }
 
 }

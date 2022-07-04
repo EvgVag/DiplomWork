@@ -8,8 +8,6 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Map;
-import java.util.Scanner;
 
 public class TodoServer {
     private int port;
